@@ -16,22 +16,24 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
-        repository: UniversalRobots/Universal_Robots_ROS_Documentation
+        with:
+          repository: UniversalRobots/Universal_Robots_ROS_Documentation
+          path: ur_doc
       - uses: actions/setup-python@v5
         with:
           cache: 'pip'
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r ur_doc/requirements.txt
           pip install vcstool
       - name: Clone subrepos
         run: |
-          mkdir -p doc
-          vcs import --input rolling.repos doc
+          mkdir -p ur_doc/doc
+          vcs import --input rolling.repos ur_doc
       - name: Build documentation
         run: |
-          make html
+          cd ur_doc && make html
       - name: clone gh-pages branch
         uses: actions/checkout@v4
         if: ${{ success() && github.event_name != 'pull_request' && !env.ACT }}
@@ -43,4 +45,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_build/html
+          publish_dir: ./ur_doc/_build/html
