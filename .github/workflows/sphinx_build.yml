@@ -1,0 +1,46 @@
+---
+name: "Build documentation"
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v4
+        repository: UniversalRobots/Universal_Robots_ROS_Documentation
+      - uses: actions/setup-python@v5
+        with:
+          cache: 'pip'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install vcstool
+      - name: Clone subrepos
+        run: |
+          mkdir -p doc
+          vcs import --input rolling.repos doc
+      - name: Build documentation
+        run: |
+          make html
+      - name: clone gh-pages branch
+        uses: actions/checkout@v4
+        if: ${{ success() && github.event_name != 'pull_request' && !env.ACT }}
+        with:
+          ref: gh-pages
+          path: gh-pages
+      - name: Deploy Pages
+        if: ${{ success() && github.event_name != 'pull_request' && !env.ACT }}
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_build/html
