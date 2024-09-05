@@ -30,7 +30,7 @@ jobs:
       - name: Clone subrepos
         run: |
           mkdir -p ur_doc/doc
-          vcs import --input ur_doc/rolling.repos ur_doc
+          vcs import --input ur_doc/rolling.repos ur_doc/doc
       - name: Build documentation
         run: |
           cd ur_doc && make html
