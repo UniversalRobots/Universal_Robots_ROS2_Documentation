@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installing a URCap on a e-Series robot &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+  <title>Simulation &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
@@ -25,8 +25,8 @@
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="Setup URSim with Docker" href="ursim_docker.html" />
-    <link rel="prev" title="Installing a URCap on a CB3 robot" href="install_urcap_cb3.html" /> 
+    <link rel="next" title="Sending URScript code to the robot" href="script_code.html" />
+    <link rel="prev" title="Controllers" href="controllers.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,15 +54,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../ur_description/doc/index.html">ur_description</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_robot_driver</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="toc.html">Installation</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="installation.html">Installation of the ur_robot_driver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="robot_setup.html">Setting up a UR robot for ur_robot_driver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="install_urcap_cb3.html">Installing a URCap on a CB3 robot</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Installing a URCap on a e-Series robot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ursim_docker.html">Setup URSim with Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/toc.html">Installation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="toc.html">Usage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="startup.html">Startup the driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="move.html">Move the robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_code.html">Sending URScript code to the robot</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../usage/toc.html">Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../operation_modes.html">Operation modes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
@@ -92,10 +92,10 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">ur_robot_driver</a></li>
-          <li class="breadcrumb-item"><a href="toc.html">Installation</a></li>
-      <li class="breadcrumb-item active">Installing a URCap on a e-Series robot</li>
+          <li class="breadcrumb-item"><a href="toc.html">Usage</a></li>
+      <li class="breadcrumb-item active">Simulation</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/installation/install_urcap_e_series.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/usage/simulation.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -103,44 +103,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="installing-a-urcap-on-a-e-series-robot">
-<span id="install-urcap-e-series"></span><h1>Installing a URCap on a e-Series robot<a class="headerlink" href="#installing-a-urcap-on-a-e-series-robot" title="Link to this heading"></a></h1>
-<p>For using the <em>ur_robot_driver</em> with a real robot you need to install the
-<strong>externalcontrol-1.0.5.urcap</strong> which can be found inside the <strong>resources</strong> folder of this driver.</p>
-<p><strong>Note</strong>: For installing this URCap a minimal PolyScope version of 5.1 is necessary.</p>
-<p>To install it you first have to copy it to the robot’s <strong>programs</strong> folder which can be done either
-via scp or using a USB stick.</p>
-<p>On the welcome screen click on the hamburger menu in the top-right corner and select <em>Settings</em> to enter the robot’s setup.  There select <em>System</em> and then <em>URCaps</em> to enter the URCaps installation screen.</p>
-<a class="reference external image-reference" href="initial_setup_images/es_01_welcome.png"><img alt="Welcome screen of an e-Series robot" src="../../../../../_images/es_01_welcome.png" /></a>
-<p>There, click the little plus sign at the bottom to open the file selector. There you should see
-all urcap files stored inside the robot’s programs folder or a plugged USB drive.  Select and open
-the <strong>externalcontrol-1.0.5.urcap</strong> file and click <em>open</em>. Your URCaps view should now show the
-<strong>External Control</strong> in the list of active URCaps and a notification to restart the robot. Do that
-now.</p>
-<a class="reference external image-reference" href="initial_setup_images/es_05_urcaps_installed.png"><img alt="URCaps screen with installed urcaps" src="../../../../../_images/es_05_urcaps_installed.png" /></a>
-<p>After the reboot you should find the <strong>External Control</strong> URCaps inside the <em>Installation</em> section.
-For this select <em>Program Robot</em> on the welcome screen, select the <em>Installation</em> tab and select
-<strong>External Control</strong> from the list.</p>
-<a class="reference external image-reference" href="initial_setup_images/es_07_installation_excontrol.png"><img alt="Installation screen of URCaps" src="../../../../../_images/es_07_installation_excontrol.png" /></a>
-<p>Here you’ll have to setup the IP address of the external PC which will be running the ROS driver.
-Note that the robot and the external PC have to be in the same network, ideally in a direct
-connection with each other to minimize network disturbances. The custom port should be left
-untouched for now.</p>
-<a class="reference external image-reference" href="initial_setup_images/es_10_prog_structure_urcaps.png"><img alt="Insert the external control node" src="../../../../../_images/es_10_prog_structure_urcaps.png" /></a>
-<p>To use the new URCaps, create a new program and insert the <strong>External Control</strong> program node into
-the program tree</p>
-<a class="reference external image-reference" href="initial_setup_images/es_11_program_view_excontrol.png"><img alt="Program view of external control" src="../../../../../_images/es_11_program_view_excontrol.png" /></a>
-<p>If you click on the <em>command</em> tab again, you’ll see the settings entered inside the <em>Installation</em>.
-Check that they are correct, then save the program. Your robot is now ready to be used together with
-this driver.</p>
+  <section id="simulation">
+<h1>Simulation<a class="headerlink" href="#simulation" title="Link to this heading"></a></h1>
+<p>Apart from being used with a real robot, the ROS driver can be used with ros2_control’s mock hardware or the URSim simulator (which is equivalent from the driver’s perspective).</p>
+<p>Additionally, the robot can be simulated using
+<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Gazebo_Simulation">Gazebo Classic</a> or
+<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Ignition_Simulation">GZ Sim</a> but that’s
+outside of this driver’s scope.</p>
+<section id="usage-with-official-ur-simulator">
+<span id="id1"></span><h2>Usage with official UR simulator<a class="headerlink" href="#usage-with-official-ur-simulator" title="Link to this heading"></a></h2>
+<p>The easiest way to use URSim is the <a class="reference external" href="https://hub.docker.com/r/universalrobots/ursim_e-series">Docker
+image</a> provided by Universal Robots (See
+<a class="reference external" href="https://hub.docker.com/r/universalrobots/ursim_cb3">this link</a> for a CB3-series image).</p>
+<p>To start it, we’ve prepared a script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>ur_client_library<span class="w"> </span>start_ursim.sh<span class="w"> </span>-m<span class="w"> </span>&lt;ur_type&gt;
+</pre></div>
+</div>
+<p>With this, we can spin up a driver using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>&lt;ur_type&gt;<span class="w"> </span>robot_ip:<span class="o">=</span><span class="m">192</span>.168.56.101<span class="w"> </span>launch_rviz:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>You can view the polyscope GUI by opening <a class="reference external" href="http://192.168.56.101:6080/vnc.html">http://192.168.56.101:6080/vnc.html</a>.</p>
+<p>When we now move the robot in Polyscope, the robot’s RViz visualization should move accordingly.</p>
+<p>For details on the Docker image, please see the more detailed guide <a class="reference internal" href="../installation/ursim_docker.html#ursim-docker"><span class="std std-ref">here</span></a>.</p>
+</section>
+<section id="mock-hardware">
+<h2>Mock hardware<a class="headerlink" href="#mock-hardware" title="Link to this heading"></a></h2>
+<p>The package can simulate hardware with the ros2_control <code class="docutils literal notranslate"><span class="pre">MockSystem</span></code>. This emulator enables an
+environment for testing of “piping” of hardware and controllers, as well as testing robot’s
+descriptions. For more details see <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_control/hardware_interface/doc/mock_components_userdoc.html">ros2_control documentation</a>
+for more details.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="install_urcap_cb3.html" class="btn btn-neutral float-left" title="Installing a URCap on a CB3 robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ursim_docker.html" class="btn btn-neutral float-right" title="Setup URSim with Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controllers.html" class="btn btn-neutral float-left" title="Controllers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="script_code.html" class="btn btn-neutral float-right" title="Sending URScript code to the robot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
