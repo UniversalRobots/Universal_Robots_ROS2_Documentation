@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
@@ -6,22 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ur_controllers &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=7ab3649f" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="../../../../_static/logo.png"/>
-  <!--[if lt IE 9]>
-    <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
-        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -136,7 +134,8 @@ program node running on the robot controller.</p></li>
 <li><p>The program interpreting motion commands could be paused.</p></li>
 </ul>
 <p>The following plot illustrates the problem:</p>
-<a class="reference external image-reference" href="traj_without_speed_scaling.png"><img alt="Trajectory execution with default trajectory controller" src="../../../../_images/traj_without_speed_scaling.png" /></a>
+<a class="reference external image-reference" href="traj_without_speed_scaling.png"><img alt="Trajectory execution with default trajectory controller" src="../../../../_images/traj_without_speed_scaling.png" />
+</a>
 <p>The graph shows a trajectory with one joint being moved to a target point and back to its starting
 point. As the joint’s speed is limited to a very low setting on the teach pendant, speed scaling
 (black line) activates and limits the joint speed (green line). As a result, the target
@@ -150,7 +149,8 @@ additional path deviations. Pausing the program or hitting the E-stop effectivel
 <code class="docutils literal notranslate"><span class="pre">speed_scaling</span></code> being 0 meaning the trajectory will not be continued until the program is continued.
 This way, trajectory executions can be explicitly paused and continued.</p>
 <p>With the scaled version of the trajectory controller the example motion shown in the previous diagram becomes:</p>
-<a class="reference external image-reference" href="traj_with_speed_scaling.png"><img alt="Trajectory execution with scaled_joint_trajectory_controller" src="../../../../_images/traj_with_speed_scaling.png" /></a>
+<a class="reference external image-reference" href="traj_with_speed_scaling.png"><img alt="Trajectory execution with scaled_joint_trajectory_controller" src="../../../../_images/traj_with_speed_scaling.png" />
+</a>
 <p>The deviation between trajectory interpolation on the ROS side and actual robot execution stays minimal and the
 robot reaches the intermediate setpoint instead of returning “too early” as in the example above.</p>
 <p>Under the hood this is implemented by proceeding the trajectory not by a full time step but only by
