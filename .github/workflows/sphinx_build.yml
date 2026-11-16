@@ -29,13 +29,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r ur_doc/requirements.txt
           pip install vcstool
-      - name: Clone subrepos
+      - name: Build documentation (all ROS 2 distros)
         run: |
-          mkdir -p ur_doc/doc
-          vcs import --input ur_doc/rolling.repos ur_doc/doc
-      - name: Build documentation
-        run: |
-          cd ur_doc && make html
+          cd ur_doc
+          mkdir -p doc
+          bash scripts/build_docs.sh
+      - name: Upload HTML documentation artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-html
+          path: ur_doc/_build/html
       - name: clone gh-pages branch
         uses: actions/checkout@v4
         if: ${{ success() && github.event_name != 'pull_request' && !env.ACT }}
